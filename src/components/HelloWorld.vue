@@ -3,7 +3,10 @@
     <!-- <h1>{{ msg }}</h1> -->
     <section class="section">
       <h3>{{ msg.title }}</h3>
-      <h6>{{ msg.content }}</h6>
+      <div v-html="msg.content"></div>
+
+      <!-- $emit接收（调用）定义在父组件中的事件enlarge-text,并传参-->
+      <button v-on:click="$emit('enlarge-text', 0.1)">enlarge text</button>
     </section>
   </div>
 </template>
@@ -11,6 +14,7 @@
 <script>
 export default {
   name: "HelloWorld",
+  // props接收定义在父组件中的属性
   props: {
     msg: Object
   }
