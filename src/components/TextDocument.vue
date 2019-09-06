@@ -1,8 +1,6 @@
 <template>
   <div>
-    <p>
-      {{ title }}
-    </p>
+    <p>{{ title }}</p>
     <button @click="$emit('update:title', 'newTitle')">update</button>
   </div>
 </template>
