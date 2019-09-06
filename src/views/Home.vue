@@ -1,22 +1,21 @@
 <template>
   <div class="home">
     <!-- 这里直接穿了一个msg对象给子组件 -->
-    <div :style="{fontSize: postFontSize + 'em'}">
-
+    <div :style="{ fontSize: postFontSize + 'em' }">
       <!-- 1. 直接改变postFontSize属性值 -->
       <!-- <HelloWorld
         v-for="post in posts"
         :key="post.id"
         :msg="post"
-        v-on:enlarge-text="postFontSize += $event" /> -->
+      v-on:enlarge-text="postFontSize += $event" />-->
 
       <!-- 2. 通过方法改变属性值 -->
       <HelloWorld
         v-for="post in posts"
         :key="post.id"
         :msg="post"
-        v-on:enlarge-text="onEnlargeText" />
-
+        v-on:enlarge-text="onEnlargeText"
+      />
     </div>
   </div>
 </template>
@@ -42,7 +41,7 @@ export default {
   },
   methods: {
     onEnlargeText: function(enlargeAmount) {
-      this.postFontSize += enlargeAmount
+      this.postFontSize += enlargeAmount;
     }
   }
 };
