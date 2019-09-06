@@ -16,6 +16,14 @@
         :msg="post"
         v-on:enlarge-text="onEnlargeText"
       />
+
+      <!-- prop属性的双向绑定 -->
+      <text-document
+        v-on:update:title="doc.title = $event"
+        v-bind:title="doc.title"
+      />
+      <!-- 简写， sync对一个 prop 进行“双向绑定” -->
+      <text-document v-bind:title.sync="doc.title"></text-document>
     </div>
   </div>
 </template>
@@ -23,11 +31,13 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
+import TextDocument from "@/components/TextDocument.vue";
 
 export default {
   name: "home",
   components: {
-    HelloWorld
+    HelloWorld,
+    TextDocument
   },
   data() {
     return {
@@ -36,7 +46,10 @@ export default {
         { id: 2, title: "Blogging with Vue", content: "content02" },
         { id: 3, title: "Why Vue is so fun", content: "content03" }
       ],
-      postFontSize: 1
+      postFontSize: 1,
+      doc: {
+        title: "this is a old title"
+      }
     };
   },
   methods: {

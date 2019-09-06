@@ -73,3 +73,49 @@ methods: {
 <!-- $emit接收（调用）定义在父组件中的事件enlarge-text,并传参-->
 <button v-on:click="$emit('enlarge-text', 0.1)">enlarge text</button>
 ```
+
+#### 3.prop单向数据流如何进行双向绑定    
+
+>注意带有 .sync 修饰符的 v-bind 不能和表达式一起使用 (例如 v-bind:title.sync=”doc.title + ‘!’” 是无效的)。取而代之的是，你只能提供你想要绑定的属性名，类似 v-model。 详见[.sync修饰符](https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-%E4%BF%AE%E9%A5%B0%E7%AC%A6)     
+
+父组件
+```html
+<!-- prop属性的双向绑定 -->
+<text-document
+  v-on:update:title="doc.title = $event"
+  v-bind:title="doc.title"
+/>
+<!-- 简写， sync对一个 prop 进行“双向绑定” -->
+<text-document v-bind:title.sync="doc.title"></text-document>
+```
+```js
+data() {
+  return {
+    // ...
+    doc: {
+      title: "this is a old title"
+    }
+  }
+}
+```
+
+子组件
+
+```html
+<template>
+  <div>
+    <p>
+      {{ title }}
+    </p>
+    <button @click="$emit('update:title', 'newTitle')">update</button>
+  </div>
+</template>
+```
+```js
+export default {
+  props: ["title"]
+};
+```
+vue Devtools对比：  
+更新前：title: "this is a old title"    
+更新后：title: "newTitle"
