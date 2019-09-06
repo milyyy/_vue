@@ -14,7 +14,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
 a
-  color green
-  font-size 14px
+  color $mainRed
+  font-size $font
 </style>
