@@ -15,6 +15,16 @@
         <h1>first</h1>
         <h3>second</h3>
       </NavigationLink>
+
+      <!-- 子组件的作用域只在子组件内部 -->
+      <navigation-link url="/profile">
+        Clicking here will send you to: {{ url }}
+        <!--
+        这里的 `url` 会是 undefined，因为 "/profile" 是
+        _传递给_ <navigation-link> 的而不是
+        在 <navigation-link> 组件*内部*定义的。
+        -->
+      </navigation-link>
     </section>
 
   </div>

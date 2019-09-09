@@ -119,3 +119,45 @@ export default {
 vue Devtools对比：  
 更新前：title: "this is a old title"    
 更新后：title: "newTitle"
+
+#### 4.插槽
+##### 插槽内容  
+```html
+<!-- 父组件 --About.vue -->
+
+<!-- 通过prop及传递了属性,又通过slot进行内容分发 -->
+<NavigationLink url="/">
+  <!-- slot的位置 可以插入任意内容-->
+  <h1>first</h1>
+  <h3>second</h3>
+</NavigationLink>
+``` 
+```html
+<!-- 子组件NavigationLink.vue -->
+
+<a v-bind:href="url" class="nav-link">
+  <!-- 如果没有包含一个 <slot> 元素，则该组件起始标签和结束标签之间的任何内容都会被抛弃 -->
+  <slot></slot>
+</a>
+```
+```js
+export default {
+  props: ["url"]
+};
+```  
+##### 编译作用域
+```html
+<!-- 父级about.vue -->
+
+<!-- 子组件的作用域只在子组件内部 -->
+<navigation-link url="/profile">
+  Clicking here will send you to: {{ url }}
+  <!--
+  这里的 `url` 会是 undefined，因为 "/profile" 是
+  _传递给_ <navigation-link> 的而不是
+  在 <navigation-link> 组件*内部*定义的。
+  -->
+</navigation-link>
+```
+上面第一遍看也许不能够理解，那么我们可以参考官方文档最为重要的一句话：  
+> **父级模板里的所有内容都是在父级作用域中编译的；子模板里的所有内容都是在子作用域中编译的**。 详见：[编译作用域](https://cn.vuejs.org/v2/guide/components-slots.html#%E7%BC%96%E8%AF%91%E4%BD%9C%E7%94%A8%E5%9F%9F)
