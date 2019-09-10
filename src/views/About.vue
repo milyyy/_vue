@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-
+    <h1>插槽内容</h1>
     <section>
       <h1>slot插槽,v2.6.0后新语法</h1>
       <a href="https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md">
@@ -8,6 +8,7 @@
       </a>
     </section>
 
+    <h1>插槽内容分发以及编译作用域</h1>
     <section>
       <!-- 通过prop及传递了属性,又通过slot进行内容分发 -->
       <NavigationLink url="/">
@@ -27,14 +28,31 @@
       </navigation-link>
     </section>
 
+    <h1>多插槽使用 v2.6+ </h1>
+    <BaseLayout>
+      <template v-slot:header>
+        header插槽显示的区域
+      </template>
+
+      <p>
+        无命名，为默认区域，相当于v-slot:default
+      </p>
+
+      <template v-slot:footer>
+        footer插槽显示的区域
+      </template>
+    </BaseLayout>
+
   </div>
 </template>
 
 <script>
 import NavigationLink from "@/components/NavigationLink.vue";
+import BaseLayout from "@/components/BaseLayout.vue";
 export default {
   components: {
-    NavigationLink
+    NavigationLink,
+    BaseLayout
   }
 };
 </script>

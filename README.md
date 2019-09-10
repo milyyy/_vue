@@ -137,14 +137,61 @@ vue Devtools对比：
 
 <a v-bind:href="url" class="nav-link">
   <!-- 如果没有包含一个 <slot> 元素，则该组件起始标签和结束标签之间的任何内容都会被抛弃 -->
-  <slot></slot>
+  <slot>
+    这里是默认显示的内容，如果父组件有内容将会替换这里默认内容。
+  </slot>
 </a>
 ```
 ```js
 export default {
   props: ["url"]
 };
+```    
+##### 多插槽使用 v2.6+（具名插槽）    
+> **有时我们需要多个插槽,对于这样的情况，slot 元素有一个特殊的特性：name。这个特性可以用来定义额外的插槽,一个不带 name 的 slot 出口会带有隐含的名字“default”。在向具名插槽提供内容的时候，我们可以在一个 template 元素上使用 v-slot 指令，并以 v-slot 的参数的形式提供其名称。** 更多详见：[具名插槽](https://cn.vuejs.org/v2/guide/components-slots.html#%E5%85%B7%E5%90%8D%E6%8F%92%E6%A7%BD)
+
+```html
+<!-- 父级About.vue -->
+
+<BaseLayout>
+  <template v-slot:header>
+    header插槽显示的区域
+  </template>
+
+  <p>
+    无命名，为默认区域，相当于v-slot:default
+  </p>
+
+  <template v-slot:footer>
+    footer插槽显示的区域
+  </template>
+</BaseLayout>
 ```  
+
+```html
+<!-- 子级BaseLayout.vue -->
+
+<div class="container">
+
+  <header>
+    <!-- 我们希望把页头放这里 -->
+    <slot name="header"></slot>
+  </header>
+
+  <main>
+    <!-- 我们希望把主要内容放这里 -->
+    <slot></slot>
+    <!-- 一个不带 name 的 <slot> 出口会带有隐含的名字“default”。 -->
+  </main>
+
+  <footer>
+    <!-- 我们希望把页脚放这里 -->
+    <slot name="footer"></slot>
+  </footer>
+
+</div>
+```
+
 ##### 编译作用域
 ```html
 <!-- 父级about.vue -->
