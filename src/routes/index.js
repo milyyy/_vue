@@ -24,8 +24,23 @@ export default new Router({
     },
     {
       path: "/other",
-      name: "other",
-      component: () => import("@/views/Other.vue")
+      // name: "other",
+      component: () => import("@/views/Other.vue"),
+      children: [
+        {
+          // 默认路由渲染
+          path: "",
+          component: () => import("@/views/other/route1.vue")
+        },
+        {
+          path: "route1",
+          component: () => import("@/views/other/route1.vue")
+        },
+        {
+          path: "route2",
+          component: () => import("@/views/other/route2.vue")
+        }
+      ]
     }
   ]
 });
