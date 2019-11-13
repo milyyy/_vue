@@ -26,6 +26,7 @@
 
     .tab-button.active {
       background: #e0e0e0;
+      color: blue;
     }
 
     .tab {
@@ -52,7 +53,10 @@
       * 已注册组件的名字，或
       * 一个组件的选项对象
     -->
-    <component v-bind:is="currentTabComponent" class="tab"></component>
+    <!-- 失活的组件将会被缓存！-->
+    <keep-alive>
+      <component v-bind:is="currentTabComponent" class="tab"></component>
+    </keep-alive>
 
   </div>
 
