@@ -46,7 +46,7 @@ export default {
         { id: 2, title: "Blogging with Vue", content: "content02" },
         { id: 3, title: "Why Vue is so fun", content: "content03" }
       ],
-      postFontSize: 1,
+      postFontSize: 1.2,
       doc: {
         title: "this is a old title"
       }
