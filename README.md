@@ -209,7 +209,7 @@ export default {
 上面第一遍看也许不能够理解，那么我们可以参考官方文档最为重要的一句话：  
 > **父级模板里的所有内容都是在父级作用域中编译的；子模板里的所有内容都是在子作用域中编译的**。 详见：[编译作用域](https://cn.vuejs.org/v2/guide/components-slots.html#%E7%BC%96%E8%AF%91%E4%BD%9C%E7%94%A8%E5%9F%9F)  
 
-#### 编程式导航
+#### 5.编程式导航
 ##### router.push(), router.replace()
 * router.push()的几种用法 [官方文档说明](https://router.vuejs.org/zh/guide/essentials/navigation.html) 
 ```js
