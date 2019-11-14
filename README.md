@@ -207,4 +207,22 @@ export default {
 </navigation-link>
 ```
 上面第一遍看也许不能够理解，那么我们可以参考官方文档最为重要的一句话：  
-> **父级模板里的所有内容都是在父级作用域中编译的；子模板里的所有内容都是在子作用域中编译的**。 详见：[编译作用域](https://cn.vuejs.org/v2/guide/components-slots.html#%E7%BC%96%E8%AF%91%E4%BD%9C%E7%94%A8%E5%9F%9F)
+> **父级模板里的所有内容都是在父级作用域中编译的；子模板里的所有内容都是在子作用域中编译的**。 详见：[编译作用域](https://cn.vuejs.org/v2/guide/components-slots.html#%E7%BC%96%E8%AF%91%E4%BD%9C%E7%94%A8%E5%9F%9F)  
+
+#### 编程式导航
+##### router.push(), router.replace()
+* router.push()的几种用法 [官方文档说明](https://router.vuejs.org/zh/guide/essentials/navigation.html) 
+```js
+// 字符串
+router.push('home')
+router.push({ name: 'user', params: { userId: '123' }})
+// 命名的路由
+// 带查询参数，变成 /register?plan=private
+router.push({ path: 'home' })
+router.push({{ path: `/user/${userId}` }})
+router.push({ path: 'register', query: { plan: 'private' }})
+```  
+<strong>小结：</strong>  
+router.push：这个方法会向 history 栈添加一个新的记录，所以，当用户点击浏览器后退按钮时，则回到之前的 URL  
+router.replace：它不会向 history 添加新记录，而是跟它的方法名一样，替换掉当前的 history 记录。  
+router.go(n)这个方法的参数是一个整数，意思是在 history 记录中向前或者后退多少步，如router.go(-1)后退一步，router.go(3)前进3步记录
