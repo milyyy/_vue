@@ -45,7 +45,9 @@ export default new Router({
     },
     {
       path: "/user/:id",
-      component: () => import("@/views/User.vue")
+      name: "user",
+      component: () => import("@/views/User.vue"),
+      props: true
     }
   ]
 });

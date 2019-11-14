@@ -225,4 +225,33 @@ router.push({ path: 'register', query: { plan: 'private' }})
 <strong>小结：</strong>  
 router.push：这个方法会向 history 栈添加一个新的记录，所以，当用户点击浏览器后退按钮时，则回到之前的 URL  
 router.replace：它不会向 history 添加新记录，而是跟它的方法名一样，替换掉当前的 history 记录。  
-router.go(n)这个方法的参数是一个整数，意思是在 history 记录中向前或者后退多少步，如router.go(-1)后退一步，router.go(3)前进3步记录
+router.go(n)这个方法的参数是一个整数，意思是在 history 记录中向前或者后退多少步，如router.go(-1)后退一步，router.go(3)前进3步记录    
+
+#### 6.路由解耦  
+>  [在组件中使用 $route 会使之与其对应路由形成高度耦合，从而使组件只能在某些特定的 URL 上使用，限制了其灵活性。](https://router.vuejs.org/zh/guide/essentials/passing-props.html#%E5%B8%83%E5%B0%94%E6%A8%A1%E5%BC%8F)  
+
+##### $route 的耦合  
+```html
+<!-- User中 -->
+<p>使用$route未解耦前的id获取:{{ $route.params.id }}</p>
+```  
+##### 通过 props 解耦
+###### 只需在路由配置文件中加入props: true, User组件通过props可以接收到解耦所得数据
+```js
+// index.js
+{
+  path: "/user/:id",
+  name: "user",
+  component: () => import("@/views/User.vue"),
+  // 解耦需在此加入props：true. 就可以在任何地方使用该组件，相当于公用组件的形式
+  props: true
+}  
+
+// User.vue
+<p>使用props解耦后直接获取的：{{ name }}</p>
+
+export default {
+  props: ['name']
+}
+
+```

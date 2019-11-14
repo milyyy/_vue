@@ -4,11 +4,18 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> | 
       <router-link to="/other">other</router-link> | 
-      <router-link to="/user">user</router-link>
+
+      <!-- path路径跳转 -->
+      <!-- <router-link :to="{path:`/user/2`}">user</router-link>  -->
+      
+      <!-- name命名跳转 -->
+      <router-link :to="{ name: 'user', params: { id: 123, name:'mily' }}">user</router-link> | 
+      
     </div>
     <router-view />
   </div>
 </template>
+
 <style lang="stylus">
 #app
   font-family 'Avenir', Helvetica, Arial, sans-serif
