@@ -16,6 +16,7 @@ export default new Router({
     {
       path: "/about",
       name: "about",
+      alias: "/guanyu", // 别名，地址栏名称不改变，路径依然是/about
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
@@ -41,6 +42,10 @@ export default new Router({
           component: () => import("@/views/other/route2.vue")
         }
       ]
+    },
+    {
+      path: "/user/:id",
+      component: () => import("@/views/User.vue")
     }
   ]
 });
