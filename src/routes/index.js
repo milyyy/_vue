@@ -34,11 +34,11 @@ export default new Router({
           component: () => import("@/views/other/route1.vue")
         },
         {
-          path: "route1",
+          path: "first",
           component: () => import("@/views/other/route1.vue")
         },
         {
-          path: "route2",
+          path: "second",
           component: () => import("@/views/other/route2.vue")
         }
       ]
