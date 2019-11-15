@@ -1,6 +1,7 @@
 <template>
   <div id="other">
     <p>导航</p>
+    <p>{{ $root.foo }}</p>
     <router-link to="/other/first">route1</router-link>&nbsp;&nbsp;
     <router-link to="/other/second">route2</router-link>
     <router-view></router-view>

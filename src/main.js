@@ -9,6 +9,9 @@ import "@/assets/style/myStyle.styl";
 Vue.config.productionTip = false;
 
 new Vue({
+  data: {
+    foo: 1
+  },
   router,
   store,
   render: h => h(App)

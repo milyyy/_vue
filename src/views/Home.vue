@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+    {{ $root.foo }}
+    <button @click="changeRoot">改变根元素的foo</button>
     <!-- 这里直接穿了一个msg对象给子组件 -->
     <div :style="{ fontSize: postFontSize + 'em' }">
       <!-- 1. 直接改变postFontSize属性值 -->
@@ -55,6 +57,9 @@ export default {
   methods: {
     onEnlargeText: function(enlargeAmount) {
       this.postFontSize += enlargeAmount;
+    },
+    changeRoot() {
+      this.$root.foo=3
     }
   }
 };
