@@ -37,6 +37,11 @@ import TextDocument from "@/components/TextDocument.vue";
 
 export default {
   name: "home",
+  provide: function(){
+    return {
+      map: '这是由父组件provide提供得到的'
+    }
+  },
   components: {
     HelloWorld,
     TextDocument
