@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <div id="nav">
+      <!-- <demo></demo> -->
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> | 
       <router-link to="/other">other</router-link> | 
+      <router-link to="/i18n">i18n</router-link> | 
 
       <!-- path路径跳转 -->
       <!-- <router-link :to="{path:`/user/2`}">user</router-link>  -->
@@ -15,6 +17,15 @@
     <router-view />
   </div>
 </template>
+
+<script>
+// import demo from "@/components/i18n-demo/Demo18n.vue";
+export default {
+  components: {
+    // demo
+  }
+}
+</script>
 
 <style lang="stylus">
 #app

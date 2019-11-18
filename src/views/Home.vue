@@ -27,6 +27,9 @@
       <!-- 简写， sync对一个 prop 进行“双向绑定” -->
       <text-document v-bind:title.sync="doc.title"></text-document>
     </div>
+
+    <h4>i18n:{{ $t('navbar.dashboard') }}</h4>
+
   </div>
 </template>
 

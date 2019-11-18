@@ -48,6 +48,11 @@ export default new Router({
       name: "user",
       component: () => import("@/views/User.vue"),
       props: true
+    },
+    {
+      path: "/i18n",
+      name: "i18n",
+      component: () => import("@/views/i18n-demo/Demo18n.vue")
     }
   ]
 });
