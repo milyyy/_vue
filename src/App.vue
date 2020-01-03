@@ -1,45 +1,115 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <!-- <demo></demo> -->
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> | 
-      <router-link to="/other">other</router-link> | 
-      <router-link to="/i18n">i18n</router-link> | 
+    <h2>购物车</h2>
+    <hr>
 
-      <!-- path路径跳转 -->
-      <!-- <router-link :to="{path:`/user/2`}">user</router-link>  -->
-      
-      <!-- name命名跳转 -->
-      <router-link :to="{ name: 'user', params: { id: 123, name:'mily' }}">user</router-link> | 
-      
+    <div>
+      <h3>添加课程</h3>
+      <label for="name">课程名称：</label>
+      <input v-model="course.name" type="text" id="name"><br>
+      <label for="price">课程价格：</label>
+      <input v-model="course.price" type="text" id="price">
+      <p>
+        
+        <button @click="addCourseList()">添加课程到列表</button>
+      </p>
     </div>
-    <router-view />
+
+    <hr>
+
+    <div>
+      <table>
+        <tr>
+          <th>课程名称</th>
+          <th>课程价格</th>
+        </tr>
+        <tr v-for="(item, index) in courseList" :key="index">
+          <td>{{ item.name }}</td>
+          <td>{{ item.price }}</td>
+          <td>
+            <button @click="addCartList(index)"> + 购物车</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <hr>
+
+    <div>
+      <h3>购物车</h3>
+      <cart :cartList="cartList" @removeItem="remove()"></cart>
+    </div>
+
   </div>
 </template>
 
 <script>
-// import demo from "@/components/i18n-demo/Demo18n.vue";
+import cart from "@/components/Cart"
+
 export default {
+  name: 'app',
   components: {
-    // demo
+    cart
+  },
+  data(){
+    return {
+      // 课程列表
+      course: {
+        name: "",
+        price: "",
+      },
+      courseList: [
+        {
+          id: 1,
+          name: "前端",
+          price: "1000"
+        },
+        {
+          id: 2,
+          name: "python",
+          price: "3000"
+        }
+      ],
+      // 购物车列表
+      cartList: []
+    }
+  },
+  methods: {
+    // 添加到课程列表
+    addCourseList() {
+      this.courseList.push(this.course)
+    },
+    // 添加到购物车列表
+    addCartList(i) {
+      let course = this.courseList[i];
+      let isHasCourse = this.cartList.find( x =>
+        x.id == course.id
+      )
+      if (isHasCourse) {
+        isHasCourse.num += 1; 
+      } else {
+        this.cartList.push({
+          ...course,
+          num: 1,
+          isActive: true
+        })
+      }
+    },
+    // 移除item
+    remove(i) {
+      // 这里存在一个问题， i无法传过来，删除的始终是最上面一项
+      this.cartList.splice(i, 1);
+    }
   }
 }
 </script>
 
-<style lang="stylus">
-#app
-  font-family 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-
-#nav
-  padding 30px
-  a
-    font-weight bold
-    color #2c3e50
-    &.router-link-exact-active
-      color #42b983
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>
