@@ -9,12 +9,23 @@ const routes = [
   },
   {
     path: "/home",
-    component: () => import('@/views/Home.vue')
+    component: () => import('@/views/Home.vue'),
+    // beforeEnter: (to, from, next) => {
+    //   // 路由独享守卫
+    //   console.log('这是进入路由前');
+    //   setTimeout(() => {
+    //     next()
+    //   }, 1000);
+    // }
   },
   {
     path: '/lesson/:id',
     props: true, 
     component: () => import ('@/views/Lesson.vue') 
+  },
+  {
+    path: '/test/:id',
+    component: () => import ('@/views/Test.vue') 
   },
   {
     path: '/hello',
@@ -24,9 +35,17 @@ const routes = [
       mily: () => import('@/views/World.vue')
     }
   },
+  {
+    path: '/cart',
+    component: () => import('@/views/Cart.vue')
+  },
+  {
+    path: '/login',
+    component: () => import('@/views/Login.vue')
+  }
 ]
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   routes
 })

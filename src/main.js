@@ -6,11 +6,19 @@ Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {
   console.log('before each')
-  next()
+  // ...
+  // 如果没有登录的情况下,用户点击购物车我们则让其1s后跳转至登录页登录
+  if (to.path === '/cart') {
+    setTimeout(() => {
+      next('/login')
+    }, 1000)
+  } else {
+    next()
+  }
 })
 
 router.beforeResolve((to, from, next) => {
-  console.log('before resolve',to,from)
+  console.log('before resolve')
   next()
 })
 
