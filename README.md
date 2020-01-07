@@ -5,6 +5,7 @@
 
 本篇demo源码，点击[这里](https://github.com/milyyy/_vue/tree/vue-router)
 ### 路由出口
+在出口中渲染匹配到的组件，只匹配一层。如果需要设置嵌套路由，则需要设置多个出口。
 ```html
 <template>
   <div id="app">
@@ -101,7 +102,7 @@ export default {
 简单来说，就是路由发生变化的过程中所触发的一些列钩子函数。当然，这些钩子函数可以分为全局钩子，组件内钩子，路由独享钩子。 下面我们来具体了解一下这些钩子
 
 #### 全局守卫
-每个守卫方法接受三个参数：
+守卫方法接受三个参数（不是每个钩子都接收next,下面会写到）：
 * to: Route 到哪儿去
 * from: Route 从哪儿来
 * next: Function
@@ -145,7 +146,7 @@ export default {
   ```
 ##### 全局后置钩子
   ```js
-  // 离开时触发钩子
+  // 离开时触发钩子， 这里不接收next（）
   router.afterEach((to, from, next) => {
     // ...
   })
