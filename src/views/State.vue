@@ -1,7 +1,11 @@
+<!--
+ * @Date: 2020-01-07 09:45:42
+ * @LastEditTime : 2020-01-09 14:52:09
+ * @FilePath: \_vue\src\views\State.vue
+ -->
 <template>
   <div>
-    Home!!
-    <hr>
+    <h3>This is State</h3>
     <div>
       单个计算属性访问的：{{ count }}
     </div>
