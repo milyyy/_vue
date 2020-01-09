@@ -30,5 +30,22 @@ export default new Vuex.Store({
     getTodoById: (state) => (id) => {
       return state.todos.filter(todo => todo.id === id)
     }
+  },
+  // 引用：
+  // 更改 Vuex 的 store 中的状态的唯一方法是提交 mutation
+  // mutation 非常类似于事件：每个 mutation 都有一个字符串的 事件类型 (type) 和 一个 回调函数 (handler)。
+  // 这个选项更像是事件注册
+
+  // 简单地说：mutations里面的方法就相当于事件名，也是mutation的type,
+  // 我们在组件中调用就要传入对应的type(也就是事件名，如'increment')
+  mutations: {
+    // 接受 state 作为第一个参数
+    increment (state) {
+      state.count--
+    },
+    // 可以传入额外的参数,即mutation的载荷
+    add (state, n) {
+      state.num += n
+    }
   }
 })
