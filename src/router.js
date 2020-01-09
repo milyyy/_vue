@@ -12,6 +12,18 @@ const routes = [
     component: () => import('@/views/State.vue'),
   },
   {
+    path: "/getter",
+    component: () => import('@/views/Getter.vue'),
+  },
+  {
+    path: "/mutation",
+    component: () => import('@/views/Mutation.vue'),
+  },
+  {
+    path: "/action",
+    component: () => import('@/views/Action.vue'),
+  },
+  {
     path: '/test/:id',
     component: () => import ('@/views/Test.vue') 
   },
