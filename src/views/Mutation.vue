@@ -1,6 +1,6 @@
 <!--
  * @Date: 2020-01-09 14:50:34
- * @LastEditTime : 2020-01-10 11:23:28
+ * @LastEditTime : 2020-01-10 15:09:55
  * @FilePath: \_vue\src\views\Mutation.vue
  -->
 <template>
@@ -43,10 +43,21 @@
       </button>
     </div>
 
+    <div>
+      <h3>使用mapMutations调用传参:{{$store.state.mutation_type}}</h3>
+      <button @click="SOME_MUTATION('type-C')">
+        改变类型2
+      </button> &nbsp;
+      <button @click="_some('type-C')">
+        别名
+      </button>
+    </div>
+
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
   methods: {
     // mutation 改变state中单一的count 
@@ -78,7 +89,16 @@ export default {
 
     changeType() {
       this.$store.commit('SOME_MUTATION', 'type-B');
-    }
+    },
+    // 这里type只需要在调用时传参
+    ...mapMutations([
+      'SOME_MUTATION'
+    ]),
+    // 这里给type取别名 需要使用对象的键值对形式 {key: mutation_type}
+    ...mapMutations({
+      _some: 'SOME_MUTATION'
+    }),
+    
   },
 }
 </script>
