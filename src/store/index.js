@@ -12,7 +12,9 @@ export default new Vuex.Store({
     todos: [
       { id: 1, text: 'text01', done: true },
       { id: 2, text: 'text02', done: false }
-    ]
+    ],
+
+    obj: {}
   },
 
   // Getter 可以认为是store的计算属性(依赖state)
@@ -45,7 +47,11 @@ export default new Vuex.Store({
     },
     // 可以传入额外的参数,即mutation的载荷
     add (state, n) {
-      state.num += n
+      state.num += 2
+    },
+    // 在大多数情况下，载荷应该是一个对象
+    getName (state, payload) {
+      state.author  = payload.name;
     }
   }
 })
