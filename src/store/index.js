@@ -41,6 +41,7 @@ export default new Vuex.Store({
 
   // 简单地说：mutations里面的方法就相当于事件名，也是mutation的type,
   // 我们在组件中调用就要传入对应的type(也就是事件名，如'increment')
+  // mutation是同步的
   mutations: {
     // 接受 state 作为第一个参数
     increment (state) {
@@ -48,7 +49,7 @@ export default new Vuex.Store({
     },
     // 可以传入额外的参数,即mutation的载荷
     add (state, n) {
-      state.num += 2
+      state.num += n
     },
     // 在大多数情况下，载荷应该是一个对象
     getName (state, payload) {
@@ -59,5 +60,27 @@ export default new Vuex.Store({
     [SOME_MUTATION] (state, type) {
       state.mutation_type = type
     }
+  },
+
+  // Action 提交的是 mutation，而不是直接变更状态。
+  // Action 可以包含任意异步操作。
+
+  // Action 函数接受一个与 store 实例具有相同方法和属性的 context 对象  (context相当于store)
+  actions: {
+    // 简单的 action
+    /**
+    * increment (context) {
+    *   context.commit('increment')
+    * },
+    */
+
+    // 解构赋值把context.commit赋值给变量commit
+    // 相当于 let { commit } = context 
+    addAsync ( {commit} ) {
+      // 可以进行异步操作
+      setTimeout(() => {
+        commit('add')
+      }, 1000)
+   }
   }
 })
