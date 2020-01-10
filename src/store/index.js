@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { SOME_MUTATION } from './mutation-types'
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -8,7 +9,7 @@ export default new Vuex.Store({
     author: 'mily',
     count: 0,
     num: 1,
-
+    mutation_type: 'type-A',
     todos: [
       { id: 1, text: 'text01', done: true },
       { id: 2, text: 'text02', done: false }
@@ -52,6 +53,11 @@ export default new Vuex.Store({
     // 在大多数情况下，载荷应该是一个对象
     getName (state, payload) {
       state.author  = payload.name;
+    },
+
+    // 常量代替type
+    [SOME_MUTATION] (state, type) {
+      state.mutation_type = type
     }
   }
 })

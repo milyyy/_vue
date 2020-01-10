@@ -1,6 +1,6 @@
 <!--
  * @Date: 2020-01-09 14:50:34
- * @LastEditTime : 2020-01-10 10:55:52
+ * @LastEditTime : 2020-01-10 11:23:28
  * @FilePath: \_vue\src\views\Mutation.vue
  -->
 <template>
@@ -34,7 +34,14 @@
       <button @click="setName()">
         增加对象新属性
       </button>
-  </div>
+    </div>
+    
+    <div>
+      <h3>使用常量代替mutation的模式:{{$store.state.mutation_type}}</h3>
+      <button @click="changeType()">
+        改变类型
+      </button>
+    </div>
 
   </div>
 </template>
@@ -67,6 +74,10 @@ export default {
       this.$set(this.$store.state.obj, 'name', 'hello');
       // 2. 以新对象替换老对象。例如，利用对象展开运算符
       this.$store.state.obj = { ...this.$store.state.obj, age: 18 };
+    },
+
+    changeType() {
+      this.$store.commit('SOME_MUTATION', 'type-B');
     }
   },
 }
