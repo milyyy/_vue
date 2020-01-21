@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { SOME_MUTATION } from './mutation-types'
+import moduleA from './module/a'
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -82,5 +83,10 @@ export default new Vuex.Store({
         commit('add')
       }, 1000)
    }
+  },
+
+  // 子模块引入
+  modules: {
+    a: moduleA
   }
 })

@@ -4,6 +4,7 @@
     <router-link to="/getter">Getter</router-link> | 
     <router-link to="/mutation">Mutation</router-link> | 
     <router-link to="/action">Action</router-link> | 
+    <router-link to="/module">module</router-link> | 
 
     <p>
       <router-link to="/test/1">Test 1</router-link> | 
