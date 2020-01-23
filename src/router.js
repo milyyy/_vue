@@ -2,38 +2,48 @@ import Vue from 'vue';
 import Router from 'vue-router';
 Vue.use(Router);
 
-const routes = [
-  {
+const router = new Router({
+  mode: 'history',
+  routes: [{
     path: '/',
-    redirect: "/state",
+    redirect: "/home",
   },
   {
-    path: "/state",
-    component: () => import('@/views/State.vue'),
+    path: '/home',
+    name: 'home',
+    component: () => import('@/views/Home')
   },
   {
-    path: "/getter",
-    component: () => import('@/views/Getter.vue'),
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/Login')
   },
   {
-    path: "/mutation",
-    component: () => import('@/views/Mutation.vue'),
+    path: '/cart',
+    name: 'cart',
+    component: () => import('@/views/Cart'),
+    meta: {
+      auth: true, // 需要验证用户是否登陆
+    }
   },
-  {
-    path: "/action",
-    component: () => import('@/views/Action.vue'),
-  },
-  {
-    path: "/module",
-    component: () => import('@/views/Module.vue'),
-  },
-  {
-    path: '/test/:id',
-    component: () => import ('@/views/Test.vue') 
-  },
-]
 
-export default new Router({
-  mode: 'hash',
-  routes
+  ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.auth) {
+    const token = localStorage.getItem('token');
+    // 如果已经存储了token则下一步，否则跳转到登陆页，登陆成功则重新跳转至之前想要去的页面
+    if (token) {
+      next();
+    } else {
+      next({
+        path: '/login',
+        query: { redirect: to.path }
+      })
+    }
+  } else {
+    next()
+  }
+})
+export default router;
