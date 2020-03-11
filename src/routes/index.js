@@ -1,3 +1,8 @@
+/*
+ * @Date: 2020-03-10 14:11:01
+ * @LastEditTime: 2020-03-11 10:03:00
+ * @FilePath: \_vue\src\routes\index.js
+ */
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "@/views/Home.vue";
@@ -48,6 +53,11 @@ export default new Router({
       name: "user",
       component: () => import("@/views/User.vue"),
       props: true
+    },
+    {
+      path: "/test",
+      name: "test",
+      component: () => import("@/views/Test.vue")
     },
     {
       path: "/i18n",

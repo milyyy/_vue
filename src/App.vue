@@ -6,6 +6,7 @@
       <router-link to="/about">About</router-link> | 
       <router-link to="/other">other</router-link> | 
       <router-link to="/i18n">i18n</router-link> | 
+      <router-link to="/test">test</router-link> | 
 
       <!-- path路径跳转 -->
       <!-- <router-link :to="{path:`/user/2`}">user</router-link>  -->
