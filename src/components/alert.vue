@@ -15,7 +15,7 @@
             <div class="footer">
               <button @click="handelCancel">{{cancelText}}</button>
               <button @click="handelConfirm">{{confirmText}}</button>
-            </div>
+            </div>  
           </div>
         </transition>
       </div>
