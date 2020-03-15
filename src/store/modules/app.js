@@ -1,9 +1,9 @@
 import Cookies from "js-cookie";
-import { getLanguage } from "@/lang/index";
+// import { getLanguage } from "@/lang/index";
 
 export default {
   state: {
-    language: getLanguage()
+    // language: getLanguage()
   },
   mutations: {
     SET_LANGUAGE: (state, language) => {
