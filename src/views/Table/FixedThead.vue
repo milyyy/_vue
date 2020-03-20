@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-03-20 09:42:43
  * @Description: 固定表头
- * @LastEditTime: 2020-03-20 12:56:32
+ * @LastEditTime: 2020-03-20 12:58:44
  * @FilePath: \_vue\src\views\Table\FixedThead.vue
  -->
 
