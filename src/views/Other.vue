@@ -1,46 +1,66 @@
 <!--
  * @Date: 2020-03-19 10:48:43
- * @Description: 描述
- * @LastEditTime: 2020-03-20 12:53:45
+ * @Description: MTable动态表单，支持动态添加表头和功能按钮
+ * @LastEditTime: 2020-03-20 18:01:40
  * @FilePath: \_vue\src\views\Other.vue
  -->
 <template>
   <div>
-    <fixed-thead
-      :heads="heads"
-      :tableData="tableData"
-      :isDisplayAction="isDisplayAction"
-    ></fixed-thead>
+    <m-table :heads="heads" :tableData="tableData" :isDisplayAction="isDisplayAction">
+      <template v-slot:default="slotData">
+        <el-button @click="del(slotData.rowInfo)" size="small">删除</el-button>
+      </template>
+    </m-table>
   </div>
 </template>
 
 <script>
-import FixedThead from "./Table/FixedThead";
+import MTable from "./Table/MTable";
 export default {
   components: {
-    FixedThead
+    MTable
   },
   data() {
     return {
-      isDisplayAction: true, // 是否展示操作列
-      heads: ["a", "b", "c"], // 传入的prop数组
+      /**
+       * isDisplayAction: 是否展示操作列，必传
+       * heads:           thead数组，必传
+       * tableData：      表单数据， 必传
+       * template         为默认插槽部分，可以自定义操作添加各种button
+       * slotData.rowInfo： slot子组件传来的数据{row, $index}
+       * 支持添加具名插槽，但需要重新进行子组件配置~
+       * 支持el-table原有属性和方法
+       */
+      isDisplayAction: true,
+      heads: ["id", "name", "age"],
       tableData: [
-        //传入的对应表单数据
-        // 表单数据
         {
-          a: "aaaa",
-          b: "bbbb",
-          c: "cccc",
-          d: "xxxx"
+          id: "03",
+          name: "mily",
+          age: "18",
+          weight: "50kg"
         },
         {
-          a: "aa",
-          b: "bb",
-          c: "cc",
-          d: "xx"
+          id: "07",
+          name: "korol",
+          age: "81",
+          weight: "74kg"
         }
       ]
     };
+  },
+  methods: {
+    del({ row, $index }) {
+      console.log(row, $index);
+      this.$notify({
+        title: "Success",
+        message: "删除成功",
+        type: "success",
+        duration: 2000
+      });
+      // 可以依据后台逻辑删除
+      this.tableData.splice($index, 1);
+    }
   }
 };
 </script>
