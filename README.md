@@ -209,6 +209,41 @@ export default {
 上面第一遍看也许不能够理解，那么我们可以参考官方文档最为重要的一句话：  
 > **父级模板里的所有内容都是在父级作用域中编译的；子模板里的所有内容都是在子作用域中编译的**。 详见：[编译作用域](https://cn.vuejs.org/v2/guide/components-slots.html#%E7%BC%96%E8%AF%91%E4%BD%9C%E7%94%A8%E5%9F%9F)  
 
+##### 正确写法
+父组件访问子组件数据
+`<template v-slot:default="slotData">`
+```html
+<!-- 父组件 -->
+<template>
+  <div>
+    <m-table :heads="heads" :tableData="tableData" :isDisplayAction="isDisplayAction">
+      <template v-slot:default="slotData">
+        <el-button @click="del(slotData.rowInfo)" size="small">删除</el-button>
+      </template>
+    </m-table>
+  </div>
+</template>
+```
+
+`<slot :rowInfo="rowinfo"></slot>`
+```html
+<!-- 子组件 -->
+  <div class="table">
+    <el-table :data="values" border fit stripe style="width: 100%">
+      <el-table-column v-for="k in formThead" :key="k" :label="k">
+        <template slot-scope="scope">{{ scope.row[k] }}</template>
+      </el-table-column>
+
+      <!-- 插槽 -->
+      <el-table-column v-if="isDisplayAction" label="操作">
+        <template slot-scope="{row, $index}">
+          <slot :rowInfo="{row, $index}"></slot>            
+        </template>
+      </el-table-column>
+    </el-table>
+```
+
+
 #### 5.编程式导航
 ##### router.push(), router.replace()
 * router.push()的几种用法 [官方文档说明](https://router.vuejs.org/zh/guide/essentials/navigation.html) 
