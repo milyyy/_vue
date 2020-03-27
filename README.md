@@ -1,4 +1,17 @@
 # _vue
+
+### 简介
+本项目为vue学习笔记以及项目过程中遇到的各种问题，持续更新。知识点分类分支整理：  
+
+> **master** : vue基本知识  
+> **components** : 封装公用组件/迁移至另一仓库 m-components  
+> **i18n** : i18n国际化 关键变量$t、技术点js-cookie储存  
+> **module**: es6模块化导入导出  
+> **projec**t: 项目搭建基本框架  
+> **single-vue-build** : vue单页应用打包  
+> **vue-router** :  vue-router路由使用以及钩子函数解释  
+> **vuex** :  vuex状态管理  
+> **父子组件传值**： 父子组件之间的通信  
 ### 组件传值
 小结：
 #### 1.prop传值（在父组件中通过v-bind绑定定义在data中的数据，可以传递一个对象）
