@@ -27,7 +27,7 @@ const merge = require("webpack-merge");
 const webpackConfig = require("./webpack.config");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
-
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 /*  clean-webpack-plugin 3.0 以上的版本需要使用对象结构  */
 // const CleanWebpackPlugin = require('clean-webpack-plugin')
 
@@ -39,18 +39,20 @@ module.exports = merge(webpackConfig, {
   devtool: '#source-map',
   optimization: { // 压缩css代码
     splitChunks: {
-      vendors: {
-        name: 'chunk-vendors',
-        test: /[\\\/]node_modules[\\\/]/,
-        priority: -10,
-        chunks: 'initial'
-      },
-      common: {
-        name: 'chunk-common',
-        minChunks: 2,
-        priority: -20,
-        chunks: 'initial',
-        reuseExistingChunk: true
+      cacheGroups: {
+        vendors: {
+          name: 'chunk-vendors',
+          test: /[\\\/]node_modules[\\\/]/,
+          priority: -10,
+          chunks: 'initial'
+        },
+        common: {
+          name: 'chunk-common',
+          minChunks: 2,
+          priority: -20,
+          chunks: 'initial',
+          reuseExistingChunk: true
+        }
       }
     }
   },
@@ -107,7 +109,17 @@ module.exports = merge(webpackConfig, {
       }
     }),
     // 用户拷贝静态资源
-    new CopyWebpackPlugin()
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../public'),
+        to: path.resolve(__dirname, '../dist')
+      }
+    ]),
+    new CleanWebpackPlugin(),
+    // 生产环境 模块打包分析
+    new BundleAnalyzerPlugin({
+      analyzerMode: "static"
+    })
   ]
   
 })
