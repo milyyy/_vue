@@ -2,8 +2,8 @@
 module.exports = {
   presets: [
     '@babel/preset-env', // es6/7/8转es5
-    // {
-    //   "useBuiltIns": "usage"
-    // }
+    {
+      "useBuiltIns": "usage"
+    }
   ]
 }
