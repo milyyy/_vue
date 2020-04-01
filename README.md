@@ -38,3 +38,34 @@ Invalid configuration object. Webpack has been initialised using a configuration
 > https://stackoverflow.com/questions/45273988/webpack3-jshint-loader-does-not-work/45274620#45274620  
 
 
+### 多入口文件打包 
+```js
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+module.exports = {
+  mode: "development",
+  // entry: path.resolve(__dirname, "../src/main.js"),
+  entry: {
+    main: path.resolve(__dirname, "../src/main.js"),
+    other: path.resolve(__dirname, "../src/other.js")
+  },
+  output: {
+    path: path.resolve(__dirname, "../dist"),
+    // filename: "bundle.js"
+    filename: '[name].[hash].js'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "../public/index.html"), // 以xx模板进行打包
+      filename: '1.html', // 输出文件名 1.html
+      chunks: ['main']    // 与打包入口文件名相对应
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "../public/other.html"),
+      filename: '2.html',
+      chunks: ['other']
+    })
+  ]
+}
+```
