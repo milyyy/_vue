@@ -14,43 +14,11 @@
  module.exports = merge(webpackConfig, {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
-  module: {
-    rules: [
-      {
-        test: /\.(sass|scss)$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              implementation: require('dart-sass')
-            }
-          },
-          {
-            loader: 'postcss-loader'
-          }
-        ]
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-          }
-        ]
-      }
-    ]
+  devServer:{
+    port: 3001,
+    open: true,
+    hot: true,
+    contentBase:'./dist'
   },
   plugins: [
     // 定义开发环境变量
@@ -58,7 +26,8 @@
       'process.env': {
         NODE_ENV: JSON.stringify('development')
       }
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
  })
 

@@ -1,4 +1,4 @@
-// webpack公用配置
+// webpack公用配置  [入口 + 出口 + 模块（规则）+ 插件]
 const path = require("path");
 // 热更新 devServer 和 HotModuleReplacementPlugin 插件来实现热更新
 const webpack = require("webpack");
@@ -9,7 +9,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-  mode: "development",
+  // mode: "development",
   entry: {
     // main: ['@babel-polyfill', path.resolve(__dirname, "../src/main.js")]
     main:  path.resolve(__dirname, "../src/main.js")
@@ -18,22 +18,13 @@ module.exports = {
     path: path.resolve(__dirname, "../dist"), // 打包文件输出路径
     filename: "js/[name].[hash:8].js",      // 生成的js文件名
     chunkFilename: "js/[name].[hash:8].js", // 生成的chunk名称
-    publicPath: "./" // 生成的html模版 资源引用的路径
-  },
-  devServer: {
-    hot: true,
-    port: 3000,
-    open: true,
-    contentBase: './dist'
+    publicPath: "/" // 生成的html模版 资源引用的路径
   },
   resolve: {
     alias: {
       vue$: 'vue/dist/vue.runtime.esm.js'
     },
-    extensions: [
-      '.js',
-      '.vue'
-    ]
+    extensions:['*','.js','.json','.vue']
   },
   module: {
     rules: [
@@ -71,6 +62,20 @@ module.exports = {
             options:{
               presets:['@babel/preset-env']
             }
+          }
+        ]
+      },
+      { // 解析css
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader:'postcss-loader',
           }
         ]
       },
