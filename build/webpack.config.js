@@ -4,6 +4,7 @@ const path = require("path");
 const webpack = require("webpack");
 // 使用 html-webpack-plugin来创建html页面，并自动引入打包生成的js文件
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // 编译vue
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
@@ -66,7 +67,10 @@ module.exports = {
             loader: 'thread-loader'
           },
           {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            options:{
+              presets:['@babel/preset-env']
+            }
           }
         ]
       },
