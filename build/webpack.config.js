@@ -153,6 +153,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "../public/index.html")
     }),
+    new CleanWebpackPlugin(), // 清除上次打包缓存
     // webpck热更新
     new webpack.NamedModulesPlugin(),     
     new webpack.HotModuleReplacementPlugin(),
