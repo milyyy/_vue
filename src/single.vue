@@ -5,7 +5,7 @@
     <div class="info absolute">
       <div @mouseenter="changeSelectTurn(true)" @touchstart="changeSelectTurn(true)"
         @mouseleave="changeSelectTurn(false)" class="myCursor">
-        <div class="triangle">{{text}}</div>
+        <div>{{text}}</div>
         <ul class="lists" v-show="selectTurn" @mouseleave="delHoverActive">
           <li v-for="(val, key, i) in infoLists" :key="i" @click="setActive(i, key)" @mouseenter="setHoverActive(i)"
             :class="{ active: active === i, hoverActive: hoverActive === i }">
@@ -545,18 +545,8 @@ export default {
   }
 };
 </script>
-<style scoped lang="scss">
-.triangle {
-  &::after {
-    content: "";
-    display: inline-block;
-    border: 8px solid transparent;
-    border-top: 8px solid #fff;
-    position: relative;
-    top: 7px;
-    left: 8px;
-  }
-}
+<style scoped lang="sass">
+
 .clearfix::after {
   content: "";
   display: block;
@@ -576,8 +566,8 @@ export default {
     width: 156px;
     position: absolute;
     z-index: 5;
-    left: 120px;
-    top: 19px;
+    left: 160px;
+    top: 32px;
     margin-left: -160px;
     background: #bdcff9;
     li {

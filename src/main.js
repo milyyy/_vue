@@ -1,31 +1,41 @@
 import Vue from "vue";
-import App from "./App.vue";
-import router from "./routes";
+import App from "./App";
+import "@babel/polyfill";
+if(!Uint8Array.prototype.slice){
+  Uint8Array.prototype.slice = function(){
+    return new Uint8Array(this).subarray(this.arguments);
+  }
+};
 
-import store from "./store/";
-import Element from "element-ui";
-import Cookies from "js-cookie";
-import "element-ui/lib/theme-chalk/index.css";
+// import "./assets/iconfont";
+if (!String.prototype.padEnd) {
+  String.prototype.padEnd = function padEnd(targetLength, padString) {
+    targetLength = targetLength >> 0; //floor if number or convert non-number to 0;
+    padString = String(typeof padString !== 'undefined' ? padString : ' ');
+    if (this.length > targetLength) {
+      return String(this);
+    } else {
+      targetLength = targetLength - this.length;
+      if (targetLength > padString.length) {
+        padString += padString.repeat(targetLength / padString.length); //append to original to ensure we are longer than needed
+      }
+      return String(this) + padString.slice(0, targetLength);
+    }
+  };
+}
 
-import "@/assets/style/reset.css";
-// import "@/assets/style/myStyle.styl";
-import "./rem";
-
-import i18n from "./lang";
-
-Vue.use(Element, {
-  size: Cookies.get("size") || "medium", // set element-ui default size
-  i18n: (key, value) => i18n.t(key, value)
-});
-
-Vue.config.productionTip = false;
+// Array.prototype.slice = function(a, b){
+//   // 如果a是负数，另添加判断
+//   a=a||0;
+//   b=b||this.length;
+//   var ary=[];
+//   for(var i=a; i<b; i++){
+//       ary.push(this[i]);
+//   }
+//   // return Array.prototype.concat.apply([]).slice
+//   return ary;
+// }
 
 new Vue({
-  data: {
-    foo: 1
-  },
-  router,
-  store,
-  i18n,
-  render: h => h(App)
-}).$mount("#app");
+  render: h=> h(App)
+}).$mount('#app')
