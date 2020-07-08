@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 import "element-ui/lib/theme-chalk/index.css";
 
 import "@/assets/style/reset.css";
-// import "@/assets/style/myStyle.styl";
+import "@/assets/style/myStyle.styl";
 import "./rem";
 
 import i18n from "./lang";
