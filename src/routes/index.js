@@ -57,7 +57,7 @@ export default new Router({
     {
       path: "/render",
       name: "render",
-      component: () => import("@/views/render.vue")
+      component: () => import("@/views/render/index")
     },
     {
       path: "/test",
