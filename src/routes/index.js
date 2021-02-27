@@ -55,6 +55,11 @@ export default new Router({
       props: true
     },
     {
+      path: "/render",
+      name: "render",
+      component: () => import("@/views/render.vue")
+    },
+    {
       path: "/test",
       name: "test",
       component: () => import("@/views/Test.vue")

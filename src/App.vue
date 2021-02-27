@@ -13,7 +13,7 @@
       
       <!-- name命名跳转 -->
       <router-link :to="{ name: 'user', params: { id: 123, name:'mily' }}">user</router-link> | 
-      
+      <router-link to="/render">render实践</router-link>
     </div>
     <router-view />
   </div>
