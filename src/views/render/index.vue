@@ -11,14 +11,20 @@
         这是底部
       </template>
     </TEST>
+
+    <helloWorld :level="2">
+      点击标签
+    </helloWorld>
   </div>
 </template>
 
 <script>
 import { TEST } from "./_render";
+import { helloWorld } from "./TestRender";
 export default {
   components: {
-    TEST
+    TEST,
+    helloWorld
   }
 };
 </script>
