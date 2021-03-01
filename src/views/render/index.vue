@@ -13,18 +13,24 @@
     </TEST>
 
     <helloWorld :level="2">
-      点击标签
+      点击（带属性的）标签
     </helloWorld>
+
+    <mutiTemplate>
+      hello
+    </mutiTemplate>
   </div>
 </template>
 
 <script>
 import { TEST } from "./_render";
 import { helloWorld } from "./TestRender";
+import { mutiTemplate } from "./TestRender2";
 export default {
   components: {
     TEST,
-    helloWorld
+    helloWorld,
+    mutiTemplate
   }
 };
 </script>
