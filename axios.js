@@ -2,17 +2,17 @@ nuxt.config.js
 ```js
     proxy: {
         // 本地开发环境反向代理配置，解决本地开发与后端联调出现跨域的问题。
-        '/galaxy-bdi-business': {
-            target: 'http://10.100.111.111:8080/'
+        '/galaxy-bd': {
+            target: 'http://1011:8080/'
         },
         '/api': { // 请修改你项目中使用代理的后端地址
-            target: 'http://10.200.33.200:8080/',
+            target: 'http://10.00:8080/',
             pathRewrite: {
                 '^/api': '/'
             }
         },
         '/xxx': { // 请修改你项目中使用代理的后端地址
-            target: 'https://test111.yimidida.com/',
+            target: 'https://test111.com/',
             pathRewrite: {
                 '^/xxx': '/'
             }
