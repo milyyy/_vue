@@ -86,7 +86,10 @@ export default {
       // 2. 以新对象替换老对象。例如，利用对象展开运算符
       this.$store.state.obj = { ...this.$store.state.obj, age: 18 };
     },
-
+    /**
+    如果是子模块，则这样提交，参考https://blog.csdn.net/qq_44979541/article/details/108144777
+    this.$store.commit('other/SET_MODAL_STATUS', false);
+    */
     changeType() {
       this.$store.commit('SOME_MUTATION', 'type-B');
     },
